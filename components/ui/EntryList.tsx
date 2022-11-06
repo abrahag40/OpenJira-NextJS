@@ -1,4 +1,4 @@
-import React, { DragEvent, FC, useContext, useMemo } from 'react';
+import React, { DragEvent, FC, useContext, useMemo, useEffect } from 'react';
 import { Box, List, Paper } from '@mui/material';
 import { EntryCard } from './EntryCard';
 import { EntryStatus } from '../../interfaces';
@@ -14,6 +14,11 @@ export const EntryList: FC<Props> = ({ status }) => {
 
   const { entries, updateEntry } = useContext(EntriesContext);
   const { isDragging, endDragging } = useContext(UIContext);
+
+  useEffect(() => {
+    console.log('----', entries, status);
+  }, [entries])
+  
 
   const entriesByStatus = useMemo(() => entries.filter(entry => entry.status === status), [entries]);
 

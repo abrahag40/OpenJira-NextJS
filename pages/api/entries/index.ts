@@ -7,7 +7,6 @@ type Data =
   | IEntry[];
 
 export default function handler(req: NextApiRequest, res: NextApiResponse<Data>) {
-  
   switch (req.method) {
     case 'GET':
       return getEntries(res);
@@ -30,7 +29,7 @@ const getEntries = async(res: NextApiResponse) => {
 
 }
 
-const postEntries = async (req: NextApiRequest, res: NextApiResponse) => {
+const postEntry = async (req: NextApiRequest, res: NextApiResponse) => {
   
   const { description = '' } = req.body;
 
@@ -53,6 +52,4 @@ const postEntries = async (req: NextApiRequest, res: NextApiResponse) => {
     
     return res.status(500).json({ message: 'Algo salió mal, resivar consola del servidor' });
   }
-  
-  return res.status(201).json({ message: 'POST' });
 }
